@@ -1,0 +1,39 @@
+
+@fontSize: 16px;
+@fontWeight: 16px;
+
+.pagination-contain{
+    display: flex;
+    align-items: center;
+    .statistic{
+        margin-right: 20px;
+        font-size: @fontSize;
+        span{
+            font-weight: 700;
+        }
+    }
+    .pagination-box{
+        display: flex;
+        align-items: center;
+        margin-bottom: 0;
+        li{
+            min-width: 30px;
+            height: 40px;
+            margin: 0 5px;
+            cursor: pointer;
+            font-size: @fontSize;
+            font-weight: @fontWeight;
+            border-top: 2px solid #ddd;
+            border-bottom: 4px solid #ddd;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            &:hover{
+                border-bottom: 4px solid #aaa;
+            }
+        }
+        .active-page{
+            border-bottom: 4px solid #aaa;
+        }
+    }
+}
