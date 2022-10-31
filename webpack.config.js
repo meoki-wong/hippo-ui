@@ -32,6 +32,18 @@ module.exports = {
         },
       },
       {
+        test: /\.tsx?$/,
+        use: [
+          {
+            loader: 'ts-loader',
+            options: {
+              transpileOnly: true,
+            },
+          },
+        ],
+        exclude: /node_modules/,
+      },
+      {
         //遇到css文件的时候
         test: /\.css$/,
         //使用style-loader和css-loader处理
