@@ -1,8 +1,9 @@
 {
-  "name": "hippo-ui",
-  "version": "1.0.0",
-  "main": "index.js",
+  "name": "ui-hippo",
+  "version": "1.0.1-beta11",
+  "main": "build/index.ts",
   "license": "MIT",
+  "private": false,
   "devDependencies": {
     "@babel/core": "^7.19.6",
     "@babel/plugin-transform-typescript": "^7.20.0",
@@ -19,16 +20,17 @@
     "webpack": "^5.74.0",
     "webpack-cli": "^4.10.0"
   },
+  "files": [
+    "build",
+    "lib"
+  ],
+  
   "scripts": {
     "start": "webpack --watch",
-    "build": "webpack",
+    "build": "webpack --mode production",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "peerDependencies": {
-    "react": "^17.0.2"
-  },
-  "files": [
-    "lib/**/*"
-  ],
+  
+
   "dependencies": {}
 }

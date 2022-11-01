@@ -22,10 +22,10 @@
     "jsx": "react-jsx",
     "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"]
+      "@/*": ["lib/*"]
     }
   },
   "include": [
-    "src"
+    "lib"
   ]
 }
