@@ -1,7 +1,7 @@
 {
   "name": "ui-hippo",
-  "version": "1.0.1-beta11",
-  "main": "build/index.ts",
+  "version": "1.0.1-beta28",
+  "main": "components/index.ts",
   "license": "MIT",
   "private": false,
   "devDependencies": {
@@ -18,19 +18,22 @@
     "tslint-config-prettier": "^1.18.0",
     "typescript": "^4.8.4",
     "webpack": "^5.74.0",
-    "webpack-cli": "^4.10.0"
+    "webpack-cli": "^4.10.0",
+    "@types/react": "^18.0.24",
+    "@types/react-dom": "^18.0.8"
   },
   "files": [
-    "build",
+    "components",
     "lib"
   ],
-  
   "scripts": {
     "start": "webpack --watch",
     "build": "webpack --mode production",
+    "build:ts": "npx tsc -p .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  
-
-  "dependencies": {}
+  "dependencies": {
+    "less": "^4.1.3",
+    "less-loader": "^11.1.0"
+  }
 }

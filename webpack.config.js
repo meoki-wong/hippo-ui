@@ -2,14 +2,14 @@ const path = require('path');
 
 module.exports = {
   //编译的输入位置,是在项目目录下的src目录下的index.jsx,如果你使用纯js编写,那这个文件名当然就是index.js
-  entry: './lib/index.ts',
+  entry: './components/index.ts',
   //编译的输出设置
   output: {
     //编译后的入口文件(别人用你的包的时候,引用的文件的名字,一般都是index.js
     //这样引用你的包的时候,直接就是 import MyComponent from 'my-component/build'就自动会定位到index.js.
-    filename: 'index.ts',
+    filename: 'index.js',
     //编译后的文件将被输出到哪个文件夹下 这里是当前项目目录下的build里面
-    path: path.resolve(__dirname, 'build'),
+    path: path.resolve(__dirname, 'lib'),
     //意思是把我们的输出作为react组件
     libraryTarget: 'commonjs2',
   },
@@ -18,9 +18,9 @@ module.exports = {
     rules: [
       {
         //编译时找js或者jsx的文件
-        test: /\.js|jsx|tsx$/,
+        test: /\.js|jsx$/,
         //不包含您这些文件夹/在遇到这些文件夹的时候,跳过.我们这里写了build是因为你编译过后的文件会在build文件夹里面,而编译过的文件你不能也不需要再编译了.
-        exclude: /(node_modules|build)/,
+        exclude: /(node_modules|lib)/,
         //当符合这样的文件格式和文件夹条件的时候,使用下面的编译组件和设置
         use: {
           //使用babel-loader
@@ -33,27 +33,22 @@ module.exports = {
       },
       {
         test: /\.tsx?$/,
-        use: [
-          {
-            loader: 'ts-loader',
-            options: {
-              transpileOnly: true,
-            },
-          },
-        ],
-        exclude: /node_modules/,
+        exclude: /(node_modules|lib)/,
+        use: 'ts-loader',
       },
       {
         //遇到css文件的时候
         test: /\.css$/,
         //使用style-loader和css-loader处理
+        exclude: /(node_modules|lib)/,
         use: ['style-loader', 'css-loader'],
       },
       {
-        //遇到css文件的时候
+        //遇到less文件的时候
         test: /\.less$/,
+        exclude: /(node_modules|lib)/,
         //使用style-loader和css-loader处理
-        use: ['style-loader', 'css-loader', 'less-loader'],
+        use: ["style-loader", "css-loader", "less-loader"],
       },
     ],
   },
@@ -62,6 +57,6 @@ module.exports = {
     react: 'commonjs react',
   },
   resolve: {
-    extensions: ['.ts', '.tsx'],
+    extensions: ['.ts', '.tsx', '.js' ],
   },
 };

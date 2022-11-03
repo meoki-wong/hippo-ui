@@ -4,8 +4,8 @@ import "./style/Paginations.less";
 export default function Paginations(props: PaginationProps) {
 	const { total, onchange } = props;
 
-	const [pageArr, setPageArr] = useState([1]);
-	let [active, setActive] = useState(1);
+	const [pageArr, setPageArr] = useState<number[]>([1]);
+	let [active, setActive] = useState<number>(1);
 	const calcPageArr = (length: number) =>
 		Array.from({ length }).map((v, k) => k + 1);
 	useEffect(() => {
@@ -51,6 +51,7 @@ export default function Paginations(props: PaginationProps) {
 						<li
 							className={item === active ? "active-page" : ""}
 							onClick={() => changePage(item)}
+							key={item}
 						>
 							{item}
 						</li>
