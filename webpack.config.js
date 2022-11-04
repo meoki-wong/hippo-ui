@@ -32,21 +32,18 @@ module.exports = {
         },
       },
       {
-        test: /\.tsx?$/,
-        exclude: /(node_modules|lib)/,
+        test: /\.tsx| ts$/,
         use: 'ts-loader',
       },
       {
         //遇到css文件的时候
         test: /\.css$/,
         //使用style-loader和css-loader处理
-        exclude: /(node_modules|lib)/,
         use: ['style-loader', 'css-loader'],
       },
       {
         //遇到less文件的时候
         test: /\.less$/,
-        exclude: /(node_modules|lib)/,
         //使用style-loader和css-loader处理
         use: ["style-loader", "css-loader", "less-loader"],
       },
