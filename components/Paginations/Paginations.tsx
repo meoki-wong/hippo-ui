@@ -38,72 +38,54 @@ export default function Paginations(props: PaginationProps) {
 	const goFirstPage = () => {
 		changePage(1);
 	};
-    // 超出页码省略号占位
-    const pageOmit = () =>  (<li><i className="iconfont icon-gengduo"></i></li>)
-
-    const pageItem = () => {
+	/**
+	 * 判断条件  是否显示省略页码
+	 * @param { number } item 当前循环的页码
+	 * @returns { boolean }  true | false
+	 */
+	const judgPageCondition = (item: number) => {
+		let pageIndex: boolean
+		if(active === pageArr[0] || active === pageArr[1]){
+			pageIndex = Math.abs(active - item) < 6 - active
+		} else if(active === pageArr[pageArr.length - 1] || active === pageArr[pageArr.length - 2]){
+			pageIndex = Math.abs(active - item) < 5 - (pageArr[pageArr.length - 1] - active)
+		} else {
+			pageIndex = Math.abs(active - item) < 3
+		}
+		return pageIndex || item === pageArr[0] || item === pageArr[pageArr.length - 1]
+	}
+	const pageItem = () => {
 		/**总分页数量少于 @pageSize 页的情况下 */
-        if(pageArr.length < pageSize){
-                return pageArr.map(item=>{
-                	return <li 
-							className={item === active ? "active-page" : ""}
-							onClick={() => changePage(item)}>{item}</li>
-            	})
-        } else { /**总分页数量大于 @pageSize 页的情况下 */
+		if (pageArr.length < pageSize) {
+			return pageArr.map(item => {
+				return <li
+					className={item === active ? "active-page" : ""}
+					onClick={() => changePage(item)}>{item}</li>
+			})
+		} else { /**总分页数量大于 @pageSize 页的情况下 */
 			let pageLengthArr: any = []
-			pageArr.forEach((item: number)=>{
-				if(Math.abs(active - item) < 3 || item === pageArr[0] || item === pageArr[pageArr.length-1]){
+			pageArr.forEach((item: number) => {
+				if (judgPageCondition(item)) {
 					pageLengthArr.push(item)
 				} else {
 					// 过滤相同的省略事件
-					if(pageLengthArr[pageLengthArr.length - 1] === '...') return 
+					if (pageLengthArr[pageLengthArr.length - 1] === '...') return
 					pageLengthArr.push('...')
 				}
 			})
-			return pageLengthArr.map(item=>{
-				if(item !=='...'){
-					return <li 
-							className={item === active ? "active-page" : ""}
-							onClick={() => changePage(item)}>{item}</li>
+			return pageLengthArr.map((item: number | string) => {
+				if (item !== '...') {
+					return <li
+						className={item === active ? "active-page" : ""}
+						onClick={() => typeof item === 'number' && changePage(item)}>{item}</li>
 				} else {
-					return  <li>
-						 		<i className="iconfont icon-gengduo"></i>
-						 	</li>
+					return <li>
+						<i className="iconfont icon-gengduo"></i>
+					</li>
 				}
 			})
 		}
-
-        // 大于特定值的情况下  触发省略
-        /**
-         * if(pageArr.length > 8){
-            if(item>3 && item< pageArr.length - 2){
-               return  <li>
-                            <i className="iconfont icon-gengduo"></i>
-                       </li>
-            } else {
-                return <li
-                        className={item === active ? "active-page" : ""}
-                        onClick={() => changePage(item)}
-                        key={item}
-                        >
-                            {item}
-                        </li>
-            }
-        } else {
-            // 少于特定值  正常显示
-            return <li
-                    className={item === active ? "active-page" : ""}
-                    onClick={() => changePage(item)}
-                    key={item}
-                    >
-                        {item}
-                    </li>
-        }
-         */
-
-
-        
-    }
+	}
 	return (
 		<div className="pagination-contain">
 			<div className="statistic">
@@ -115,7 +97,7 @@ export default function Paginations(props: PaginationProps) {
 				<li onClick={prePage}>
 					<i className="iconfont icon-shangyiye"></i>
 				</li>
-                {pageItem()}
+				{pageItem()}
 				<li onClick={nextPage}>
 					<i className="iconfont icon-xiayiye"></i>
 				</li>
