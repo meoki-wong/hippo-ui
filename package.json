@@ -1,9 +1,10 @@
 {
   "name": "ui-hippo",
-  "version": "1.0.1-beta28",
+  "version": "1.0.2",
   "main": "components/index.ts",
   "license": "MIT",
   "private": false,
+  "description": "own ui-component for blog page",
   "devDependencies": {
     "@babel/core": "^7.19.6",
     "@babel/plugin-transform-typescript": "^7.20.0",
