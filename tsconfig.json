@@ -11,6 +11,7 @@
     "rootDir": ".",
     "sourceMap": true,
     "declaration": true,
+    "declarationMap": true,
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,

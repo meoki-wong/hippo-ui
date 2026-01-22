@@ -1,9 +1,10 @@
 {
   "name": "ui-hippo",
-  "version": "1.0.3",
-  "main": "components/index.ts",
+  "version": "1.0.4",
+  "main": "lib",
   "license": "MIT",
   "private": false,
+  "type":"commonjs",
   "description": "own ui-component for blog page",
   "devDependencies": {
     "@babel/core": "^7.19.6",
@@ -38,5 +39,8 @@
     "less-loader": "^11.1.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
+  },
+  "peerDependencies": {
+    "react": "18.2.0"
   }
 }
